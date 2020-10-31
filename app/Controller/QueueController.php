@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Service\QueueService;
+use Carbon\Carbon;
 use Hyperf\Di\Annotation\Inject;
 use Hyperf\HttpServer\Annotation\AutoController;
 use Hyperf\Utils\Coroutine;
@@ -31,6 +32,8 @@ class QueueController extends Controller
     {
         var_dump(Coroutine::id());
         $this->service->dump();
+        var_dump(Carbon::now()->toDateTimeString());
+        $this->service->delay();
         return $this->response->success();
     }
 }

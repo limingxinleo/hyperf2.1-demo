@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace App\Service;
 
+use Carbon\Carbon;
 use Hyperf\AsyncQueue\Annotation\AsyncQueueMessage;
 use Hyperf\Utils\Coroutine;
 
@@ -22,5 +23,14 @@ class QueueService
     public function dump()
     {
         var_dump(Coroutine::id());
+    }
+
+    /**
+     * @AsyncQueueMessage(delay=10)
+     */
+    public function delay()
+    {
+        var_dump(Coroutine::id());
+        var_dump(Carbon::now()->toDateTimeString());
     }
 }
